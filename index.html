@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>自學韓語練習本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7f6;--card:#fff;--ink:#1d2b2a;--mute:#5f706e;--line:#dbe4e2;--accent:#1a9384;--accent2:#e6f4f1;--warn:#c0573e;--ok:#2f8f4e;--ghost:#d6e2df;--shadow:0 1px 3px rgba(0,0,0,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121816;--card:#1b2321;--ink:#e3ecea;--mute:#93a5a2;--line:#2c3835;--accent:#3cc0ae;--accent2:#1d3330;--warn:#e9866d;--ok:#5cc47c;--ghost:#2e3d3a;--shadow:none}}
+:root[data-theme="dark"]{--bg:#121816;--card:#1b2321;--ink:#e3ecea;--mute:#93a5a2;--line:#2c3835;--accent:#3cc0ae;--accent2:#1d3330;--warn:#e9866d;--ok:#5cc47c;--ghost:#2e3d3a;--shadow:none}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","Noto Sans KR","Microsoft JhengHei","Malgun Gothic",sans-serif;line-height:1.6}
+.ko{font-family:"Noto Sans KR","Malgun Gothic",sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+.bar{max-width:1040px;margin:auto;display:flex;align-items:center;gap:8px;padding:8px 16px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:18px;margin-right:auto;cursor:pointer}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{padding:6px 10px;border-radius:8px;text-decoration:none;color:var(--mute);font-size:14px}
+nav a.on{background:var(--accent2);color:var(--accent);font-weight:700}
+main{max-width:1040px;margin:auto;padding:16px}
+h1{font-size:22px;margin:8px 0 4px}h2{font-size:18px;margin:20px 0 8px}h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--mute);font-size:14px;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(var(--min,150px),1fr))}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 14px}
+.tabs button,.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer;font:inherit;font-size:14px}
+.tabs button.on,.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.say{border:none;background:var(--accent2);color:var(--accent);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px;flex:none;display:inline-grid;place-items:center}
+.jamo{text-align:center;cursor:pointer;padding:10px 6px;position:relative}
+.jamo .big{font-size:40px;line-height:1.2}
+.jamo .rom{font-size:13px;color:var(--mute)}
+.jamo.seen::after{content:"✓";position:absolute;top:4px;right:8px;color:var(--ok);font-size:12px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;background:var(--accent2);color:var(--accent)}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row .k{font-size:18px}
+.row .z{color:var(--mute);font-size:14px}
+.grow{flex:1;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--accent2);white-space:nowrap}
+.tblwrap{overflow-x:auto}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-start;justify-content:center;z-index:20;overflow:auto;padding:16px}
+.modal .card{max-width:760px;width:100%;margin-top:20px}
+.close{float:right;border:none;background:none;font-size:22px;cursor:pointer;color:var(--mute)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.two{grid-template-columns:1fr}.jamo .big{font-size:32px}}
+svg.stroke{width:100%;max-width:260px;aspect-ratio:1;display:block;margin:auto;background:var(--bg);border-radius:10px}
+canvas.pad{width:100%;max-width:260px;aspect-ratio:1;display:block;margin:auto;border-radius:10px;touch-action:none;background:var(--bg);cursor:crosshair}
+.center{text-align:center}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent)}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:17px;cursor:pointer}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.opt.wrong{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 15%,var(--card))}
+.flash{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-align:center;user-select:none}
+.flash .k{font-size:40px}
+.hidezh .zh{visibility:hidden}.hideko .kk{filter:blur(6px)}
+.hidezh .zh:hover,.hideko .kk:hover{visibility:visible;filter:none}
+.line{display:flex;gap:10px;align-items:flex-start;padding:8px;border-radius:8px}
+.line.playing{background:var(--accent2)}
+.spk{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;background:var(--accent)}
+.spk.B{background:#c27c2c}
+.q{font-weight:700}
+.note{font-size:13px;color:var(--mute)}
+.warnbox{border:1px solid var(--warn);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+.parts span{display:inline-block;margin:0 2px;padding:2px 8px;border-radius:6px;font-size:22px}
+.p1{background:#f3d9a4;color:#5a3d00}.p2{background:#bfe3dc;color:#0d4a42}.p3{background:#f3c1c6;color:#6a1220}
+.sel{display:flex;flex-wrap:wrap;gap:4px}
+.sel button{min-width:38px;padding:4px 6px;font-size:18px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
+.sel button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:8px 0}
+summary{padding:10px 14px;cursor:pointer;font-weight:700}
+details>div{padding:0 14px 12px}
+.ex{display:flex;gap:8px;align-items:center;padding:4px 0}
+.star{border:none;background:none;cursor:pointer;font-size:18px;color:var(--mute)}
+.star.on{color:#e0a800}
+input[type=range]{accent-color:var(--accent)}
+.right-float{float:right}
+</style>
+</head>
+<body>
+<header><div class="bar">
+ <div class="logo" onclick="go('#home')">자학 <span>韓語</span> 練習本</div>
+ <nav id="nav">
+  <a href="#home">首頁</a><a href="#ch1">發音</a><a href="#ch2">語法</a><a href="#ch3">單字</a><a href="#ch4">會話</a><a href="#review">複習</a>
+ </nav>
+</div></header>
+<main id="app"></main>
+<div id="modal"></div>
+<script src="data.js"></script>
+<script>
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const app=$('#app');
+const parse=s=>s.split(';').map(x=>x.split('|'));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const go=h=>{location.hash=h};
+
+/* ---------- storage (per-browser convenience) ---------- */
+const KEY='krStudy-v1';
+let S={seen:{},known:{},weak:{},scenes:{},gram:{},rate:0.85};
+try{Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+/* ---------- Hangul ---------- */
+const INI='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ',MED='ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ';
+const FIN=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const compose=(i,v,f=0)=>String.fromCharCode(0xAC00+(INI.indexOf(i)*21+MED.indexOf(v))*28+(typeof f==='number'?f:FIN.indexOf(f)));
+const decomp=ch=>{const c=ch.charCodeAt(0)-0xAC00;if(c<0||c>11171)return null;return[INI[c/588|0],MED[(c%588)/28|0],FIN[c%28]]};
+const finIdx=w=>{const c=w.charCodeAt(w.length-1)-0xAC00;return c<0||c>11171?0:c%28};
+const sylOf=j=>MED.includes(j)?compose('ㅇ',j):compose(j,'ㅏ');
+
+/* ---------- speech ---------- */
+let koVoice=null;
+function loadVoices(){const vs=speechSynthesis.getVoices();const ko=vs.filter(v=>/^ko/i.test(v.lang));koVoice=ko.find(v=>/natural|online|google/i.test(v.name))||ko[0]||null;const w=$('#voicewarn');if(w)w.style.display=koVoice?'none':'block'}
+if('speechSynthesis'in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}
+function speak(t,onend){if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/\[|\]/g,''));u.lang='ko-KR';if(koVoice)u.voice=koVoice;u.rate=S.rate;if(onend){u.onend=onend;u.onerror=onend}speechSynthesis.speak(u)}
+const sayBtn=t=>`<button class="say" title="播放" onclick="event.stopPropagation();speak(this.dataset.t)" data-t="${esc(t)}">🔊</button>`;
+
+/* ---------- stroke data (100×100) ---------- */
+const L=(...p)=>({p}),O=(x,y,r)=>({o:[x,y,r]});
+const ST={
+ 'ㅏ':[L(50,10,50,90),L(50,46,74,46)],'ㅓ':[L(26,46,50,46),L(50,10,50,90)],
+ 'ㅗ':[L(50,38,50,62),L(14,62,86,62)],'ㅜ':[L(14,40,86,40),L(50,40,50,72)],
+ 'ㅡ':[L(12,50,88,50)],'ㅣ':[L(50,10,50,90)],
+ 'ㅐ':[L(40,10,40,90),L(40,46,62,46),L(62,10,62,90)],'ㅔ':[L(24,46,44,46),L(44,10,44,90),L(66,10,66,90)],
+ 'ㅚ':[L(34,44,34,62),L(10,62,60,62),L(76,10,76,90)],'ㅟ':[L(10,40,60,40),L(36,40,36,74),L(76,10,76,90)],
+ 'ㅑ':[L(50,10,50,90),L(50,36,74,36),L(50,58,74,58)],'ㅕ':[L(26,36,50,36),L(26,58,50,58),L(50,10,50,90)],
+ 'ㅛ':[L(38,40,38,62),L(62,40,62,62),L(14,62,86,62)],'ㅠ':[L(14,40,86,40),L(38,40,38,72),L(62,40,62,72)],
+ 'ㅒ':[L(40,10,40,90),L(40,36,62,36),L(40,58,62,58),L(62,10,62,90)],'ㅖ':[L(22,36,44,36),L(22,58,44,58),L(44,10,44,90),L(66,10,66,90)],
+ 'ㅘ':[L(30,44,30,62),L(8,62,52,62),L(68,10,68,90),L(68,46,88,46)],'ㅝ':[L(8,40,54,40),L(31,40,31,72),L(52,54,70,54),L(70,10,70,90)],
+ 'ㅙ':[L(24,44,24,62),L(6,62,44,62),L(58,10,58,90),L(58,46,74,46),L(76,10,76,90)],'ㅞ':[L(6,40,44,40),L(25,40,25,72),L(46,54,62,54),L(62,10,62,90),L(80,10,80,90)],
+ 'ㅢ':[L(10,56,60,56),L(76,10,76,90)],
+ 'ㄱ':[L(18,20,76,20,72,86)],'ㄴ':[L(24,14,24,78,86,78)],'ㄷ':[L(24,20,80,20),L(24,20,24,80,84,80)],
+ 'ㄹ':[L(20,14,78,14,78,48),L(22,48,78,48),L(22,48,22,86,84,86)],'ㅁ':[L(22,18,22,82),L(22,18,78,18,78,82),L(22,82,78,82)],
+ 'ㅂ':[L(24,14,24,86),L(76,14,76,86),L(24,48,76,48),L(24,86,76,86)],'ㅅ':[L(50,14,16,86),L(44,42,84,86)],
+ 'ㅇ':[O(50,52,32)],'ㅈ':[L(18,18,82,18),L(50,18,16,86),L(46,46,84,86)],'ㅊ':[L(50,4,50,16),L(18,24,82,24),L(50,24,16,88),L(46,50,84,88)],
+ 'ㅋ':[L(18,20,76,20,72,86),L(20,52,74,52)],'ㅌ':[L(24,16,80,16),L(24,48,78,48),L(24,16,24,82,84,82)],
+ 'ㅍ':[L(14,18,86,18),L(36,18,34,80),L(64,18,66,80),L(10,80,90,80)],'ㅎ':[L(50,4,50,18),L(20,26,80,26),O(50,63,21)],
+};
+const dbl=b=>{const m=(s,dx)=>s.o?O(dx+s.o[0]*.48,s.o[1],s.o[2]*.48):L(...s.p.map((v,i)=>i%2?v:dx+v*.48));return[...ST[b].map(s=>m(s,1)),...ST[b].map(s=>m(s,51))]};
+ST['ㄲ']=dbl('ㄱ');ST['ㄸ']=dbl('ㄷ');ST['ㅃ']=dbl('ㅂ');ST['ㅆ']=dbl('ㅅ');ST['ㅉ']=dbl('ㅈ');
+const pathD=(s,k=1)=>s.o?(([x,y,r])=>`M${x},${y-r} A${r},${r} 0 1 0 ${x},${y+r} A${r},${r} 0 1 0 ${x},${y-r}`)(s.o.map(v=>v*k)):'M'+s.p.reduce((a,v,i)=>a+(i%2?','+v*k:(i?' L':'')+v*k),'');
+const start=s=>s.o?[s.o[0],s.o[1]-s.o[2]]:[s.p[0],s.p[1]];
+function strokeSVG(j){const ss=ST[j]||[];return `<svg class="stroke" viewBox="0 0 100 100" id="svgS">
+ <g stroke="var(--line)" stroke-width=".6" stroke-dasharray="2 2"><line x1="50" y1="0" x2="50" y2="100"/><line x1="0" y1="50" x2="100" y2="50"/></g>
+ <g fill="none" stroke="var(--ghost)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">${ss.map(s=>`<path d="${pathD(s)}"/>`).join('')}</g>
+ <g fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" class="anim">${ss.map(s=>`<path d="${pathD(s)}"/>`).join('')}</g>
+ <g class="nums" font-size="8" font-weight="700" text-anchor="middle">${ss.map((s,i)=>{const[x,y]=start(s);return `<g opacity="0"><circle cx="${x}" cy="${y}" r="5.5" fill="var(--warn)"/><text x="${x}" y="${y+2.8}" fill="#fff">${i+1}</text></g>`}).join('')}</g></svg>`}
+function animStroke(){const ps=[...document.querySelectorAll('#svgS .anim path')],ns=[...document.querySelectorAll('#svgS .nums>g')];
+ ps.forEach((p,i)=>{const l=p.getTotalLength();p.style.strokeDasharray=l;p.animate([{strokeDashoffset:l},{strokeDashoffset:0}],{duration:650,delay:i*800,fill:'both',easing:'ease-in-out'});ns[i].animate([{opacity:0},{opacity:1}],{duration:150,delay:i*800,fill:'both'})})}
+function setupPad(j){const cv=$('#pad');const dpr=window.devicePixelRatio||1;const W=cv.clientWidth;cv.width=W*dpr;cv.height=W*dpr;const c=cv.getContext('2d');c.scale(dpr,dpr);const k=W/100;const css=getComputedStyle(document.documentElement);
+ const bg=()=>{c.clearRect(0,0,W,W);c.strokeStyle=css.getPropertyValue('--line');c.setLineDash([4,4]);c.lineWidth=1;c.beginPath();c.moveTo(W/2,0);c.lineTo(W/2,W);c.moveTo(0,W/2);c.lineTo(W,W/2);c.stroke();c.setLineDash([]);
+  c.strokeStyle=css.getPropertyValue('--ghost');c.lineWidth=8*k;c.lineCap='round';c.lineJoin='round';(ST[j]||[]).forEach(s=>{c.stroke(new Path2D(pathD(s,k)))})};
+ bg();let down=false;c.strokeStyle=css.getPropertyValue('--ink');
+ const pos=e=>{const r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+ cv.onpointerdown=e=>{down=true;cv.setPointerCapture(e.pointerId);const[x,y]=pos(e);c.strokeStyle=css.getPropertyValue('--ink');c.lineWidth=6*k;c.beginPath();c.moveTo(x,y)};
+ cv.onpointermove=e=>{if(!down)return;const[x,y]=pos(e);c.lineTo(x,y);c.stroke()};
+ cv.onpointerup=cv.onpointercancel=()=>down=false;
+ $('#padclr').onclick=bg}
+
+/* ---------- modal ---------- */
+function openModal(html,after){$('#modal').innerHTML=`<div class="modal" onclick="if(event.target===this)closeModal()"><div class="card"><button class="close" onclick="closeModal()">×</button>${html}</div></div>`;after&&after()}
+function closeModal(){$('#modal').innerHTML='';window.speechSynthesis&&speechSynthesis.cancel();route()}
+
+function showJamo(type,idx){
+ const list=type==='v'?KR.vowels:KR.consonants,J=list[idx];S.seen[J.c]=1;save();
+ const words=parse(J.w);
+ openModal(`<h1 class="ko" style="font-size:30px">${J.c} <span class="tag">${J.g}</span> ${J.n?`<span class="ko note">${J.n}</span>`:''}</h1>
+ <p class="sub">羅馬拼音 <b>${J.r}</b> ・ 注音近似 <b>${J.z}</b></p>
+ <div class="two"><div><h3>筆順動畫</h3>${strokeSVG(J.c)}<p class="center"><button class="btn" onclick="animStroke()">▶ 重播筆順</button></p></div>
+ <div><h3>跟著寫寫看</h3><canvas class="pad" id="pad"></canvas><p class="center"><button class="btn" id="padclr">清除重寫</button></p></div></div>
+ <h3>發音方法</h3><p>${J.tip}</p>
+ <p><button class="btn pri" onclick="speak('${sylOf(J.c)}')">🔊 聽「${sylOf(J.c)}」</button> ${J.n?`<button class="btn" onclick="speak('${J.n}')">🔊 字母名「${J.n}」</button>`:''}</p>
+ <h3>讀單字練發音</h3>${words.map(([k,z])=>`<div class="row">${sayBtn(k)}<span class="k ko">${k}</span><span class="z">${z}</span></div>`).join('')}
+ <p class="center" style="margin-top:12px">${idx>0?`<button class="btn" onclick="showJamo('${type}',${idx-1})">← ${list[idx-1].c}</button>`:''} ${idx<list.length-1?`<button class="btn" onclick="showJamo('${type}',${idx+1})">${list[idx+1].c} →</button>`:''}</p>`,
+ ()=>{animStroke();setupPad(J.c)})}
+
+/* ---------- generic quiz ---------- */
+function runQuiz(el,qs,title,onDone){let i=0,score=0,wrong=[];
+ const draw=()=>{if(i>=qs.length){el.innerHTML=`<div class="card center"><h2>${title} 完成！</h2><p style="font-size:28px">${score} / ${qs.length}</p>${wrong.length?`<h3>答錯的題目</h3>${wrong.map(w=>`<div class="row"><span class="grow ko">${w}</span></div>`).join('')}`:'<p>全對，太厲害了！🎉</p>'}<p><button class="btn pri" id="again">再做一次</button></p></div>`;$('#again').onclick=()=>onDone&&onDone(true);onDone&&onDone(false,score,qs.length);return}
+  const q=qs[i];el.innerHTML=`<div class="card"><div class="prog"><i style="width:${i/qs.length*100}%"></i></div><p class="note">${title} ・ 第 ${i+1}/${qs.length} 題 ・ 得分 ${score}</p><div style="font-size:20px;margin:10px 0">${q.prompt}</div>${q.options.map((o,k)=>`<button class="opt ko" data-k="${k}">${esc(o)}</button>`).join('')}<div id="fb" class="note"></div></div>`;
+  if(q.say)speak(q.say);
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const o=q.options[+b.dataset.k];el.querySelectorAll('.opt').forEach(x=>{x.disabled=true;if(q.options[+x.dataset.k]===q.answer)x.classList.add('right')});
+   if(o===q.answer){score++;q.onRight&&q.onRight()}else{b.classList.add('wrong');wrong.push(q.review||q.answer);q.onWrong&&q.onWrong()}
+   $('#fb').innerHTML=(q.explain||'')+` <button class="btn pri" id="nx" style="margin-top:8px">下一題 →</button>`;$('#nx').onclick=()=>{i++;draw()};if(q.sayAfter)speak(q.sayAfter)})};
+ draw()}
+const opts=(ans,pool,n=4)=>shuffle([ans,...pick([...new Set(pool)].filter(x=>x!==ans),n-1)]);
+
+/* ---------- pages ---------- */
+const allWords=()=>KR.vocab.flatMap((t,ti)=>parse(t.w).map(([k,z])=>({k,z,ti})));
+function home(){
+ const seen=Object.keys(S.seen).length,known=Object.values(S.known).reduce((a,o)=>a+Object.keys(o).length,0),tot=allWords().length,sc=Object.keys(S.scenes).length,gr=Object.keys(S.gram).length;
+ const ch=[['#ch1','第一章','最簡單的韓語發音','40音、筆順動畫、書寫練習、收尾音、變音規則',seen,40],['#ch2','第二章','最基礎的語法和句型','詞法 15 課 + 句型 '+KR.grammar2.length+' 類，附變化練習',gr,KR.grammar1.length+KR.grammar2.length],['#ch3','第三章','最常用的場景詞彙','25 個主題、'+tot+' 個單字，閃卡與測驗',known,tot],['#ch4','第四章','最常用的日常會話','16 個場景短句與對話，可整段播放',sc,16]];
+ app.innerHTML=`<div id="voicewarn" class="warnbox" style="display:none">⚠️ 這個瀏覽器找不到韓語語音，所以按 🔊 不會發出韓語。建議用 <b>Microsoft Edge</b> 開啟（內建自然韓語語音），或到 Windows「設定 → 時間與語言 → 語音」加裝韓語語音。</div>
+ <h1>自學韓語練習本</h1><p class="sub">搭配《全新自學韓語看完這本就能說》使用，章節與書本相同，每個單元標有對應頁碼。</p>
+ <div class="grid" style="--min:230px">${ch.map(c=>`<a class="card" href="${c[0]}" style="text-decoration:none;color:inherit"><span class="tag">${c[1]}</span><h3 style="margin-top:6px">${c[2]}</h3><p class="note" style="min-height:40px">${c[3]}</p><div class="prog"><i style="width:${Math.min(100,c[4]/c[5]*100)}%"></i></div><p class="note">${c[4]} / ${c[5]}</p></a>`).join('')}</div>
+ <h2>設定</h2><div class="card"><label>語音速度 <input type="range" min="0.5" max="1.2" step="0.05" value="${S.rate}" oninput="S.rate=+this.value;this.nextElementSibling.textContent=this.value;save()"> <span>${S.rate}</span></label> <button class="btn" onclick="speak('안녕하세요. 만나서 반갑습니다.')">🔊 試聽</button>
+ <p class="note">進度存在這台電腦的瀏覽器裡。<button class="btn" onclick="if(confirm('確定清除所有學習進度？')){S={seen:{},known:{},weak:{},scenes:{},gram:{},rate:S.rate};save();route()}">清除進度</button></p></div>
+ <h2>建議學習順序</h2><div class="card"><ol style="margin:0;padding-left:20px"><li>第一章：先把 21 個母音、19 個子音的筆順和發音看過一遍，每個字跟著寫三次。</li><li>用「拼字組合器」自己組字，再做「聽音測驗」直到 9 成以上。</li><li>第二章：每天讀 1–2 課詞法，做助詞和動詞變化練習。</li><li>第三章、第四章：每天一個單字主題 + 一個會話場景，用閃卡複習「還不熟」的字。</li></ol></div>`;
+ loadVoices()}
+
+function ch1(sub){
+ sub=sub||'intro';const T=[['intro','韓語簡介'],['v','母音・中聲'],['c','子音・初聲'],['f','子音・終聲'],['ch','變音'],['b','拼字組合器'],['q','聽音測驗']];
+ let h=`<h1>第一章 最簡單的韓語發音</h1><div class="tabs">${T.map(([k,n])=>`<button class="${k===sub?'on':''}" onclick="go('#ch1/${k}')">${n}</button>`).join('')}</div>`;
+ if(sub==='intro'){h+=`<p class="sub">書 p.12</p><div class="card"><h3>韓文字（한글）怎麼來的</h3><p>韓文字由朝鮮世宗大王於 1443 年創制，1446 年以《訓民正音》之名頒布。它是<b>表音文字</b>：看到字就能唸出來。母音依「天（・）、地（ㅡ）、人（ㅣ）」造字，子音則模仿發音器官的形狀，例如ㄱ像舌根抵住軟顎、ㅁ像嘴巴的形狀。</p>
+ <h3>40 音＝21 個母音＋19 個子音</h3><p>每個韓文字是一個「方塊」，由 <span class="p1" style="padding:0 6px;border-radius:4px">初聲（子音）</span>＋<span class="p2" style="padding:0 6px;border-radius:4px">中聲（母音）</span>＋<span class="p3" style="padding:0 6px;border-radius:4px">終聲（收尾音，可有可無）</span> 組成。沒有子音時用不發音的ㅇ佔位。</p>
+ <div class="tblwrap"><table><tr><th>結構</th><th>範例</th><th>拆解</th></tr>${[['左右','가'],['上下','고'],['左右＋終聲','강'],['上下＋終聲','곰'],['複合母音','과'],['雙收尾音','닭']].map(([a,b])=>{const p=decomp(b);return `<tr><td>${a}</td><td class="ko" style="font-size:26px">${b} ${sayBtn(b)}</td><td class="parts ko"><span class="p1">${p[0]}</span>+<span class="p2">${p[1]}</span>${p[2]?`+<span class="p3">${p[2]}</span>`:''}</td></tr>`}).join('')}</table></div>
+ <p>韓語詞彙約 70% 來自漢字詞，所以很多單字和中文發音相近：<span class="ko">도서관</span>(圖書館)、<span class="ko">운동</span>(運動)、<span class="ko">가족</span>(家族)。</p>
+ <h3>拆字器</h3><p class="note">點下面的字看看它由哪些字母組成：</p><div class="sel" id="splitpick">${'한국어사랑합니다감사학교읽다'.split('').map(c=>`<button class="ko">${c}</button>`).join('')}</div><div id="splitout" class="parts ko" style="margin-top:10px"></div></div>`}
+ if(sub==='v'||sub==='c'){const L=sub==='v'?KR.vowels:KR.consonants;const groups=[...new Set(L.map(x=>x.g))];
+  h+=`<p class="sub">書 p.${sub==='v'?18:60} ・ 點字母看筆順動畫、書寫練習與例字。已看過的會打 ✓。</p>`+groups.map(g=>`<h2>${g}</h2><div class="grid" style="--min:96px">${L.map((x,i)=>x.g!==g?'':`<div class="card jamo ${S.seen[x.c]?'seen':''}" onclick="showJamo('${sub}',${i})"><div class="big ko">${x.c}</div><div class="rom">${x.r} ・ ${x.z}</div></div>`).join('')}</div>`).join('');
+  if(sub==='c')h+=`<h2>平音・激音・硬音 比一比</h2><div class="card"><p class="note">同一組發音部位，差在送氣強弱與喉嚨緊張度。連續點擊聽差異：</p><div class="tblwrap"><table><tr><th>平音（輕）</th><th>激音（送氣）</th><th>硬音（緊、不送氣）</th></tr>${[['가','카','까'],['다','타','따'],['바','파','빠'],['자','차','짜'],['사','','싸']].map(r=>`<tr>${r.map(x=>`<td class="ko" style="font-size:22px">${x?x+' '+sayBtn(x):'—'}</td>`).join('')}</tr>`).join('')}</table></div></div>`}
+ if(sub==='f'){h+=`<p class="sub">書 p.98 ・ 終聲（받침）雖然有很多種寫法，實際只有 7 種讀音。</p><div class="grid" style="--min:280px">${KR.finals.map(f=>`<div class="card"><h3><span class="ko" style="font-size:24px">${f.s}</span> 讀 [${f.r}]</h3><p class="note">寫法：<span class="ko">${f.m}</span>　${f.tip}</p>${parse(f.w).map(([k,z])=>`<div class="ex">${sayBtn(k)}<span class="ko" style="font-size:18px">${k}</span><span class="note">${z}</span></div>`).join('')}</div>`).join('')}</div>
+ <h2>雙收尾音（겹받침）</h2><div class="card"><p class="note">兩個子音當收尾時，後面沒接母音的情況下只唸其中一個：</p><div class="tblwrap"><table>${KR.doubleFinals.split('|').map(x=>{const[a,b]=x.split(' ');return `<tr><td class="ko">${a}</td><td class="ko">${b} ${sayBtn(b.split('（')[0])}</td></tr>`}).join('')}</table></div></div>`}
+ if(sub==='ch'){h+=`<p class="sub">書 p.112 ・ 字寫的和唸的不一樣時，就是發生了「變音」。[ ] 內是實際讀音。</p>`+KR.soundChanges.map(r=>`<div class="card" style="margin-bottom:10px"><h3>${r.t}</h3><p>${r.d}</p><div class="grid" style="--min:200px">${parse(r.ex).map(([w,p,z])=>`<div class="ex">${sayBtn(w)}<span><span class="ko" style="font-size:18px">${w}</span> → <b class="ko">${p}</b><br><span class="note">${z}</span></span></div>`).join('')}</div></div>`).join('')}
+ if(sub==='b'){h+=`<p class="sub">選初聲＋中聲（＋終聲），組出一個韓文字並聽它的讀音。</p><div class="card"><h3>初聲</h3><div class="sel" id="bi">${INI.split('').map(c=>`<button class="ko">${c}</button>`).join('')}</div><h3 style="margin-top:10px">中聲</h3><div class="sel" id="bv">${MED.split('').map(c=>`<button class="ko">${c}</button>`).join('')}</div><h3 style="margin-top:10px">終聲</h3><div class="sel" id="bf">${FIN.map((c,i)=>`<button class="ko" data-i="${i}">${c||'無'}</button>`).join('')}</div>
+ <div class="center" style="margin-top:14px"><div class="ko" id="bout" style="font-size:72px;line-height:1.2">가</div><button class="btn pri" onclick="speak($('#bout').textContent)">🔊 聽讀音</button></div></div>`}
+ if(sub==='q'){h+=`<div class="tabs" id="qmode"><button data-m="v" class="on">聽音選母音</button><button data-m="c">聽音選子音</button><button data-m="t">平激硬分辨</button><button data-m="r">看字選拼音</button><button data-m="f">收尾音讀法</button></div><div id="quiz"></div>`}
+ app.innerHTML=h;
+ if(sub==='intro'){app.querySelectorAll('#splitpick button').forEach(b=>b.onclick=()=>{const p=decomp(b.textContent);$('#splitout').innerHTML=`<span style="font-size:40px">${b.textContent}</span> = <span class="p1">${p[0]}</span>+<span class="p2">${p[1]}</span>${p[2]?`+<span class="p3">${p[2]}</span>`:''} ${sayBtn(b.textContent)}`;speak(b.textContent)})}
+ if(sub==='b'){const st={i:'ㄱ',v:'ㅏ',f:0};const upd=()=>{['bi','bv','bf'].forEach(id=>$('#'+id).querySelectorAll('button').forEach(b=>b.classList.toggle('on',id==='bi'?b.textContent===st.i:id==='bv'?b.textContent===st.v:+b.dataset.i===st.f)));$('#bout').textContent=compose(st.i,st.v,st.f)};
+  $('#bi').onclick=e=>{if(e.target.tagName==='BUTTON'){st.i=e.target.textContent;upd();speak($('#bout').textContent)}};$('#bv').onclick=e=>{if(e.target.tagName==='BUTTON'){st.v=e.target.textContent;upd();speak($('#bout').textContent)}};$('#bf').onclick=e=>{if(e.target.tagName==='BUTTON'){st.f=+e.target.dataset.i;upd();speak($('#bout').textContent)}};upd()}
+ if(sub==='q'){const start=m=>{$('#qmode').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));let qs;
+  if(m==='v'){const pool=KR.vowels.map(v=>v.c);qs=pick(pool,10).map(c=>({prompt:`聽讀音，選出正確的字 <button class="say" onclick="speak('${sylOf(c)}')">🔊</button>`,say:sylOf(c),options:opts(sylOf(c),pool.map(sylOf)),answer:sylOf(c)}))}
+  if(m==='c'){const pool=KR.consonants.map(v=>v.c);qs=pick(pool,10).map(c=>({prompt:`聽讀音，選出正確的字 <button class="say" onclick="speak('${sylOf(c)}')">🔊</button>`,say:sylOf(c),options:opts(sylOf(c),pool.map(sylOf)),answer:sylOf(c)}))}
+  if(m==='t'){const sets=[['가','카','까'],['다','타','따'],['바','파','빠'],['자','차','짜'],['고','코','꼬'],['도','토','또'],['보','포','뽀'],['지','치','찌'],['기','키','끼'],['비','피','삐']];qs=shuffle(sets).map(s=>{const a=s[Math.random()*3|0];return{prompt:`平音、激音還是硬音？ <button class="say" onclick="speak('${a}')">🔊</button>`,say:a,options:s,answer:a}})}
+  if(m==='r'){const all=[...KR.vowels,...KR.consonants];qs=pick(all,10).map(x=>({prompt:`<span class="ko" style="font-size:44px">${x.c}</span> 的羅馬拼音是？`,options:opts(x.r,all.map(y=>y.r)),answer:x.r,sayAfter:sylOf(x.c)}))}
+  if(m==='f'){const items=KR.finals.flatMap(f=>parse(f.w).map(([k])=>({k,a:f.s})));qs=pick(items,10).map(x=>({prompt:`<span class="ko" style="font-size:40px">${x.k}</span> 的收尾音讀成？`,options:KR.finals.map(f=>f.s),answer:x.a,sayAfter:x.k}))}
+  runQuiz($('#quiz'),qs,'發音測驗',again=>again&&start(m))};
+  $('#qmode').onclick=e=>{if(e.target.dataset.m)start(e.target.dataset.m)};start('v')}
+}
+
+function ch2(sub){
+ sub=sub||'u1';const T=[['u1','Unit 1 基礎語法（詞法）'],['u2','Unit 2 基本句型'],['q','語法練習']];
+ let h=`<h1>第二章 最基礎的語法和句型</h1><div class="tabs">${T.map(([k,n])=>`<button class="${k===sub?'on':''}" onclick="go('#ch2/${k}')">${n}</button>`).join('')}</div>`;
+ const exHTML=ex=>parse(ex).map(([k,z])=>`<div class="ex">${sayBtn(k)}<span><span class="ko">${k}</span> <span class="note">${z}</span></span></div>`).join('');
+ if(sub==='u1')h+=`<p class="sub">書 p.124 起 ・ 點開每一課閱讀，讀過的會打 ✓。</p>`+KR.grammar1.map((g,i)=>`<details data-g="g1-${i}"><summary>${S.gram['g1-'+i]?'✓ ':''}${i+1}. ${g.t} <span class="note">p.${g.p}</span></summary><div><div class="tblwrap">${g.b}</div><h3>例句</h3>${exHTML(g.ex)}</div></details>`).join('');
+ if(sub==='u2')h+=`<p class="sub">書 p.152 起 ・ 依「功能」整理的常用句型（表原因、表目的、表推測…）。</p>`+KR.grammar2.map((g,i)=>`<details data-g="g2-${i}"><summary>${S.gram['g2-'+i]?'✓ ':''}${i+1}. ${g.c}　<span class="ko note">${g.i.map(x=>x.p).join('　')}</span></summary><div>${g.i.map(x=>`<div class="card" style="margin:8px 0"><h3 class="ko">${x.p}</h3><p class="note">${x.m}</p>${exHTML(x.ex)}</div>`).join('')}</div></details>`).join('');
+ if(sub==='q')h+=`<div class="tabs" id="gmode"><button data-m="p" class="on">助詞選擇</button><button data-m="c1">現在式 -아요/어요</button><button data-m="c2">過去式 -았/었어요</button><button data-m="s">句型意思</button></div><div id="quiz"></div>`;
+ app.innerHTML=h;
+ app.querySelectorAll('details').forEach(d=>d.ontoggle=()=>{if(d.open){S.gram[d.dataset.g]=1;save()}});
+ if(sub==='q'){const nouns=KR.vocab.filter((t,i)=>[0,1,6,9,10,13,14,17].includes(i)).flatMap(t=>parse(t.w)).filter(([k])=>!/다$/.test(k)&&!/\s/.test(k));
+  const conj=parse(KR.conj);
+  const start=m=>{$('#gmode').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));let qs;
+  if(m==='p'){const P=[['은','는','主題'],['이','가','主格'],['을','를','受格'],['과','와','和'],['으로','로','往/用']];qs=pick(nouns,10).map(([k,z])=>{const p=P[Math.random()*P.length|0];const f=finIdx(k);const ans=k+(p[0]==='으로'?(f===0||f===8?'로':'으로'):(f?p[0]:p[1]));return{prompt:`<span class="ko">${k}</span>（${z}）＋ ${p[2]}助詞 <span class="ko">${p[0]}/${p[1]}</span>`,options:shuffle([k+p[0],k+p[1]]),answer:ans,explain:f===0?'最後一字沒有收尾音。':f===8&&p[0]==='으로'?'收尾音是ㄹ，所以用로。':'最後一字有收尾音。',sayAfter:ans}})}
+  if(m==='c1'||m==='c2'){const ix=m==='c1'?1:2;qs=pick(conj,10).map(r=>{const st=r[0].slice(0,-1);const ans=r[ix];const d=m==='c1'?[st+'아요',st+'어요',st+'해요']:[st+'았어요',st+'었어요',st+'했어요'];return{prompt:`<span class="ko">${r[0]}</span> 的${m==='c1'?'現在式（해요體）':'過去式'}是？`,options:shuffle([...new Set([ans,...d.filter(x=>x!==ans)])].slice(0,4)),answer:ans,sayAfter:ans}})}
+  if(m==='s'){const items=KR.grammar2.flatMap(g=>g.i.map(x=>({...x,c:g.c})));qs=pick(items,10).map(x=>{const[k,z]=parse(x.ex)[0];return{prompt:`<span class="ko">${k}</span><br><span class="note">句中「${x.p}」的功能是？</span>`,options:opts(x.c,items.map(y=>y.c)),answer:x.c,explain:z,say:k}})}
+  runQuiz($('#quiz'),qs,'語法練習',again=>again&&start(m))};
+  $('#gmode').onclick=e=>{if(e.target.dataset.m)start(e.target.dataset.m)};start('p')}
+}
+
+function ch3(n,mode){
+ if(n===undefined||n===''){app.innerHTML=`<h1>第三章 最常用的場景詞彙</h1><p class="sub">25 個生活主題。點進去可以看清單、翻閃卡、做測驗。★＝已記住。</p><div class="grid" style="--min:170px">${KR.vocab.map((t,i)=>{const w=parse(t.w),k=Object.keys(S.known[i]||{}).length;return `<a class="card" href="#ch3/${i}" style="text-decoration:none;color:inherit"><div style="font-size:26px">${t.i}</div><h3>${i+1}. ${t.t}</h3><p class="note">p.${t.p} ・ ${k}/${w.length} 已記住</p><div class="prog"><i style="width:${k/w.length*100}%"></i></div></a>`}).join('')}</div>`;return}
+ n=+n;mode=mode||'list';const t=KR.vocab[n],W=parse(t.w),K=S.known[n]=S.known[n]||{};
+ let h=`<p><a href="#ch3">← 全部主題</a></p><h1>${t.i} ${n+1}. ${t.t}</h1><p class="sub">書 p.${t.p} ・ ${W.length} 個單字 ・ 已記住 ${Object.keys(K).length}</p><div class="tabs">${[['list','單字清單'],['card','閃卡'],['quiz','測驗']].map(([k,v])=>`<button class="${k===mode?'on':''}" onclick="go('#ch3/${n}/${k}')">${v}</button>`).join('')}</div>`;
+ if(mode==='list')h+=`<div class="tabs"><button onclick="playAll()">▶ 全部播放</button><button onclick="document.getElementById('vl').classList.toggle('hidezh')">遮住中文</button><button onclick="document.getElementById('vl').classList.toggle('hideko')">遮住韓文</button></div><div class="card" id="vl">${W.map(([k,z],i)=>`<div class="row" id="w${i}">${sayBtn(k)}<span class="k ko kk grow">${k}</span><span class="z zh">${z}</span><button class="star ${K[k]?'on':''}" onclick="toggleKnown(${n},'${k}',this)" title="已記住">★</button></div>`).join('')}</div>`;
+ if(mode==='card')h+=`<div id="fc"></div>`;
+ if(mode==='quiz')h+=`<div id="quiz"></div>`;
+ app.innerHTML=h;
+ window.playAll=()=>{let i=0;const nx=()=>{document.querySelectorAll('#vl .row').forEach(r=>r.style.background='');if(i>=W.length)return;const r=$('#w'+i);if(!r)return;r.style.background='var(--accent2)';speak(W[i][0],()=>{i++;setTimeout(nx,350)})};nx()};
+ if(mode==='card'){let deck=shuffle(W.filter(([k])=>!K[k]));if(!deck.length)deck=shuffle(W);let i=0,flip=false;
+  const draw=()=>{if(i>=deck.length){$('#fc').innerHTML=`<div class="card center"><h2>這一輪完成！</h2><p>已記住 ${Object.keys(K).length}/${W.length}</p><button class="btn pri" onclick="route()">再來一輪</button></div>`;return}const[k,z]=deck[i];
+   $('#fc').innerHTML=`<div class="prog"><i style="width:${i/deck.length*100}%"></i></div><p class="note">${i+1}/${deck.length} ・ 點卡片翻面</p><div class="card flash" id="fl"><div class="k ko">${k}</div>${flip?`<div style="font-size:22px;margin-top:8px">${z}</div>`:'<div class="note">（想一想中文意思）</div>'}</div><p class="center"><button class="btn" onclick="speak('${k}')">🔊</button> <button class="btn" id="no">還不熟</button> <button class="btn pri" id="yes">記住了 ✓</button></p>`;
+   $('#fl').onclick=()=>{flip=!flip;draw()};$('#no').onclick=()=>{S.weak[k]=z;save();deck.push(deck[i]);i++;flip=false;draw()};$('#yes').onclick=()=>{K[k]=1;delete S.weak[k];save();i++;flip=false;draw()};if(!flip)speak(k)};draw()}
+ if(mode==='quiz'){const start=()=>{const qs=pick(W,Math.min(10,W.length)).map(([k,z])=>{const t=Math.random()*3|0;const onWrong=()=>{S.weak[k]=z;save()};
+  if(t===0)return{prompt:`<span class="ko" style="font-size:34px">${k}</span> 是什麼意思？`,options:opts(z,W.map(x=>x[1])),answer:z,sayAfter:k,onWrong,review:k+' '+z};
+  if(t===1)return{prompt:`「${z}」的韓文是？`,options:opts(k,W.map(x=>x[0])),answer:k,sayAfter:k,onWrong,review:k+' '+z};
+  return{prompt:`聽音選意思 <button class="say" onclick="speak('${k}')">🔊</button>`,say:k,options:opts(z,W.map(x=>x[1])),answer:z,onWrong,explain:`<span class="ko">${k}</span>`,review:k+' '+z}});
+  runQuiz($('#quiz'),qs,t.t+' 測驗',again=>again&&start())};start()}
+}
+function toggleKnown(n,k,b){const K=S.known[n]=S.known[n]||{};if(K[k])delete K[k];else{K[k]=1;delete S.weak[k]}save();b.classList.toggle('on',!!K[k])}
+
+function ch4(n){
+ if(n===undefined||n===''){app.innerHTML=`<h1>第四章 最常用的日常會話</h1><p class="sub">16 個生活場景：Step 1 場景短句、Step 2 情境對話。</p><div class="grid" style="--min:170px">${KR.conv.map((c,i)=>`<a class="card" href="#ch4/${i}" style="text-decoration:none;color:inherit"><div style="font-size:26px">${c.i}</div><h3>${S.scenes[i]?'✓ ':''}${i+1}. ${c.t}</h3><p class="note">p.${c.p}</p></a>`).join('')}</div>`;return}
+ n=+n;const c=KR.conv[n];const sh=c.s.trim().split('\n').map(l=>l.split('|'));const dl=c.d.map(d=>d.trim().split('\n').map(l=>l.split('|')));
+ app.innerHTML=`<p><a href="#ch4">← 全部場景</a>　${n>0?`<a href="#ch4/${n-1}">‹ 上一課</a>`:''}　${n<15?`<a href="#ch4/${n+1}">下一課 ›</a>`:''}</p><h1>${c.i} Unit ${String(n+1).padStart(2,'0')} ${c.t}</h1><p class="sub">書 p.${c.p}</p>
+ <div class="tabs"><button onclick="$('#cv').classList.toggle('hidezh')">遮住中文</button><button onclick="$('#cv').classList.toggle('hideko')">遮住韓文（中翻韓練習）</button></div>
+ <div id="cv"><h2><span class="tag">Step 1</span> 最常用的場景短句</h2><div class="card">${sh.map(([q,qz,a,az],i)=>`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><div class="ex">${sayBtn(q)}<span><span class="ko q kk">${i+1}. ${q}</span> <span class="zh note">${qz}</span></span></div><div class="ex" style="padding-left:20px">${sayBtn(a)}<span><span class="tag">答</span> <span class="ko kk">${a}</span> <span class="zh note">${az}</span></span></div></div>`).join('')}</div>
+ ${dl.map((d,di)=>`<h2><span class="tag">Step 2</span> 情境對話 ${di+1} <button class="btn" onclick="playDia(${di})">▶ 整段播放</button></h2><div class="card">${d.map(([s,k,z],li)=>`<div class="line" id="d${di}-${li}"><span class="spk ${s}">${s}</span><div class="grow"><div class="ko kk" style="font-size:17px">${k}</div><div class="zh note">${z}</div></div>${sayBtn(k)}</div>`).join('')}</div>`).join('')}</div>
+ <p class="center" style="margin-top:16px"><button class="btn ${S.scenes[n]?'':'pri'}" id="done">${S.scenes[n]?'✓ 已完成（點擊取消）':'標記這課已完成'}</button></p>`;
+ window.playDia=di=>{let i=0;const d=dl[di];const nx=()=>{document.querySelectorAll('.line').forEach(x=>x.classList.remove('playing'));if(i>=d.length)return;$(`#d${di}-${i}`).classList.add('playing');speak(d[i][1],()=>{i++;setTimeout(nx,500)})};nx()};
+ $('#done').onclick=()=>{if(S.scenes[n])delete S.scenes[n];else S.scenes[n]=1;save();ch4(n)}
+}
+
+function review(){const weak=Object.entries(S.weak);
+ app.innerHTML=`<h1>複習</h1><p class="sub">閃卡裡按「還不熟」或測驗答錯的單字會收進生詞本。</p>
+ <div class="tabs"><button class="on" id="rq">🎯 生詞本測驗</button><button id="aq">🎲 全部單字隨機測驗</button></div><div id="quiz"></div>
+ <h2>生詞本（${weak.length}）</h2><div class="card">${weak.length?weak.map(([k,z])=>`<div class="row">${sayBtn(k)}<span class="k ko grow">${k}</span><span class="z">${z}</span><button class="btn" onclick="delete S.weak['${k}'];save();review()">移除</button></div>`).join(''):'<p class="note">目前沒有生詞，太棒了！</p>'}</div>`;
+ const all=allWords();
+ const mk=list=>pick(list,Math.min(10,list.length)).map(({k,z})=>({prompt:`<span class="ko" style="font-size:34px">${k}</span> 是什麼意思？`,options:opts(z,all.map(x=>x.z)),answer:z,sayAfter:k,onRight:()=>{},onWrong:()=>{S.weak[k]=z;save()},review:k+' '+z}));
+ $('#rq').onclick=()=>{const l=Object.entries(S.weak).map(([k,z])=>({k,z}));if(l.length<1){$('#quiz').innerHTML='<p class="note">生詞本是空的，先去做「全部單字隨機測驗」吧。</p>';return}runQuiz($('#quiz'),mk(l),'生詞本測驗',a=>a&&review())};
+ $('#aq').onclick=()=>runQuiz($('#quiz'),mk(all),'隨機測驗',a=>a&&$('#aq').click());
+}
+
+/* ---------- router ---------- */
+function route(){window.speechSynthesis&&speechSynthesis.cancel();const[p,a,b]=(location.hash||'#home').slice(1).split('/');
+ document.querySelectorAll('#nav a').forEach(x=>x.classList.toggle('on',x.getAttribute('href')==='#'+p));
+ ({home,ch1:()=>ch1(a),ch2:()=>ch2(a),ch3:()=>ch3(a,b),ch4:()=>ch4(a),review}[p]||home)();window.scrollTo(0,0)}
+window.onhashchange=route;route();
+</script>
+</body>
+</html>
